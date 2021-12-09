@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +16,13 @@
 				<h2>Statistics</h2>
 				<div class="menu-container">
 					<div class="menu-item" style="background: thistle !important">
-						<a href="">Favourites Video</a>
+						<a href="${pageContext.request.contextPath}/admin/stats/favoriteVideos">Favourites Video</a>
 					</div>
 					<div class="menu-item">
-						<a href="">Favourites Users</a>
+						<a href="${pageContext.request.contextPath}/admin/stats/favoriteUsers">Favourites Users</a>
 					</div>
 					<div class="menu-item">
-						<a href="">Shared Friends</a>
+						<a href="${pageContext.request.contextPath}/admin/stats/shareFriends">Shared Friends</a>
 					</div>
 				</div>
 				<style>
@@ -50,7 +51,9 @@ section {
 </style>
 			</section>
 
-			<jsp:include page="layout/sectionStats.jsp"></jsp:include>
+			<c:if test="${actionType != 'favoriteVideos' }">
+				<jsp:include page="layout/sectionStats.jsp"></jsp:include>
+			</c:if>
 			<jsp:include page="layout/tableList.jsp"></jsp:include>
 		</div>
 	</div>

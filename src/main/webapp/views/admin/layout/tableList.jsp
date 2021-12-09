@@ -1,45 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="section">
 	<table>
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>Count</th>
-				<th>Latest Date</th>
-				<th>Oldest Date</th>
+				<c:forEach var="headerTable" items="${columnHeader }">
+					<th>${headerTable }</th>
+				</c:forEach>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>
-					<div class="column-title">The Garden Of Words</div>
-				</td>
-				<td>Slice Of School, School, Romance, Psychological</td>
-				<td><span>2021/10/17 at 4:33 am</span></td>
-				<td><span>2021/10/17 at 4:33 am</span></td>
-			</tr>
-			<tr>
-				<td>
-					<div class="column-title">The Garden Of Words</div>
-				</td>
-				<td>Slice Of School, School, Romance, Psychological</td>
-				<td><span>2021/10/17 at 4:33 am</span></td>
-				<td><span>2021/10/17 at 4:33 am</span></td>
-			</tr>
+			<c:choose>
+			<c:when test="${actionType=='favoriteVideos' }">
+					<c:forEach var="obj" items="${favoriteVideoList }">
+						<tr>
+							<td>${obj.videoTitle }</td>
+							<td>${obj.favourCount }</td>
+							<td>${obj.latestDate }</td>
+							<td>${obj.oldestDate }</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				
+				<c:when test="${actionType=='favoriteUsers' }">
+					<c:forEach var="obj" items="${favoUserList }">
+						<tr>
+							<td>
+								<div class="column-title">${obj.username }</div>
+							</td>
+							<td>${obj.username }</td>
+							<td><span>${obj.email }</span></td>
+							<td><span>${obj.favoDate }</span></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				
+				<c:when test="${actionType=='shareFriends' }">
+					<c:forEach var="obj" items="${shareUserList }">
+						<tr>
+							<td>
+								<div class="column-title">${obj.senderName }</div>
+							</td>
+							<td>${obj.senderEmail }</td>
+							<td><span>${obj.receiveEmail }</span></td>
+							<td><span>${obj.sentDate }</span></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+			</c:choose>
+
 			<tr class="page-action">
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-			</tr>
-			<tr class="page-action">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td colspan="2"><span><a href="">|< </a> </span> <span
-					class="pageNow" style="background: none;">5 / 20</span> <span><a
-						href="">></a></span> <span><a href="">>|</a></span></td>
+				<!-- divide page -->
+				<jsp:include page="pageTable.jsp"></jsp:include>
 			</tr>
 		</tbody>
 	</table>

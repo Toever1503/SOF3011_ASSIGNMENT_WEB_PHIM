@@ -2,17 +2,18 @@
 	pageEncoding="UTF-8"%>
 <div class="breacrumb">
 	<div class="breacrumb-item">
-		<span class="breacrumb-home" href=""> </span> <a
+		<span class="breacrumb-home"> </span> <a  href="/SOF3011_ASSIGNMENT"
 			style="margin-left: 20px;">Trang Chủ</a> <span
 			class="breadcrumb-arrow">></span>
 	</div>
-	<div class="breacrumb-item">
-		<a href=""> Fall 2021 </a> <span class="breadcrumb-arrow">></span>
-	</div>
-	<div class="breacrumb-item">
-		<a href=""> Dance With me </a>
 
+	<div class="breacrumb-item">
+		<a> ${video.title} </a> <span class="breadcrumb-arrow"></span>
 	</div>
+
+	<!-- 	<div class="breacrumb-item"> -->
+	<!-- 		<a href=""> Dance With me </a> -->
+	<!-- 	</div> -->
 	<style>
 .breacrumb {
 	font-size: 13px;

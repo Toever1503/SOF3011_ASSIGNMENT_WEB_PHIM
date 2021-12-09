@@ -15,13 +15,13 @@
 			<a href="">Tag</a>
 		</div>
 		<div class="action-item">
-			<a href="">Phim</a>
+			<a href="http://localhost:8080/SOF3011_ASSIGNMENT/admin/video">Video</a>
 		</div>
 		<div class="action-item">
-			<a href="">Người Dùng</a>
+			<a href="http://localhost:8080/SOF3011_ASSIGNMENT/admin/user">User</a>
 		</div>
 		<div class="action-item">
-			<a href="">Thống Kê</a>
+			<a href="http://localhost:8080/SOF3011_ASSIGNMENT/admin/stats/favoriteVideos">Thống Kê</a>
 		</div>
 	</div>
 </aside>

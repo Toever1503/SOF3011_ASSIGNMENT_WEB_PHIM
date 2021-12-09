@@ -1,43 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<style>
+.body-container {
+	width: 1000px;
+	margin: auto;
+	margin: 10px auto;
+	min-height: 700px;
+}
+
+footer {
+	background: wheat;
+}
+
+.footer-content {
+	width: 1000px;
+	margin: auto;
+	padding: 10px 0;
+}
+</style>
 <div class="header-content">
 	<div class="main-menu">
 		<div class="menu-item">
-			<a href="">ONLINE ENTERTAINMENT</a>
+			<a href="${pageContext.request.contextPath}">ONLINE ENTERTAINMENT</a>
 		</div>
 		<div class="menu-item">
-			<a href="">My Favourites</a>
+			<a href="${pageContext.request.contextPath}/myFavourites">My
+				Favourites</a>
 		</div>
 		<div class="menu-item">
-			<a
-				onclick='(()=>{let check = this.parentElement.lastElementChild.getAttribute("data-active")==="true";
-                                        this.parentElement.lastElementChild.setAttribute("data-active", !check)
-                                        this.parentElement.lastElementChild.style.display = !check ?"block": "none"
-                                    })()'>My
-				Account</a>
+			<script type="text/javascript">
+				function myAccountCick(e){
+					console.log(e)
+					let check = e.parentElement.lastElementChild.getAttribute('data-active')==='true';
+		            e.parentElement.lastElementChild.setAttribute('data-active', !check)
+		            e.parentElement.lastElementChild.style.display = !check ?'block': 'none';
+				}
+				
+				document.addEventListener("DOMContentLoaded", function(){
+					document.getElementById('user-action-logout').addEventListener('click', function(){
+					console.log("1231")
+					fetch('http://localhost:8080/SOF3011_ASSIGNMENT/signout').then(res=>res.text()).then(data=>{
+							if(data=='success'){
+								alert('logout success');
+							}
+							else
+								alert('You has logged out')
+					}).catch(error=>console.log(error));
+				})
+				});
+				
+			</script>
+			<a onclick="myAccountCick(this)">My Account</a>
 			<div class="sub-menu-item" data-active="false">
 				<div class="sub-item-menu-item">
-					<a href="">Login</a>
+					<a href="${pageContext.request.contextPath}/login">Login</a>
 				</div>
 				<div class="sub-item-menu-item">
 					<a href="">Forgot Password</a>
 				</div>
 				<div class="sub-item-menu-item">
-					<a href="">Registration</a>
+					<a href="${pageContext.request.contextPath}/register">Registration</a>
 				</div>
 				<div class="sub-item-menu-item">
-					<a href="">Logoff</a>
+					<a id="user-action-logout">Logoff</a>
 				</div>
 				<div class="sub-item-menu-item">
-					<a href="">Change Password</a>
+					<a href="${pageContext.request.contextPath}/user/changepassword">Change
+						Password</a>
 				</div>
 				<div class="sub-item-menu-item">
-					<a href="">Edit Profile</a>
+					<a href="${pageContext.request.contextPath}/user/edit_profile">Edit
+						Profile</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 <style>
 * {
 	margin: 0;
@@ -95,6 +134,7 @@ header .header-content .main-menu .menu-item .sub-menu-item {
 	display: none;
 	animation: sub-menu-item-show 0.4s forwards;
 	animation-timing-function: ease;
+	z-index: 1;
 }
 
 @

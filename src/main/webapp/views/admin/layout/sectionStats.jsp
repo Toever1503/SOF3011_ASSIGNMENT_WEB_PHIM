@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <section>
 	<div class="video-list">
-		<h3>Video</h3>
-		<select name="" id="">
-			<option value="">Hankioo</option>
-			<option value="">Hankioo</option>
-			<option value="">Hankioo</option>
-			<option value="">Hankioo</option>
-			<option value="">Hankioo</option>
-			<option value="">Hankioo</option>
+		<h3>Video TITLE?</h3>
+		<select id="video-title">
+			<c:forEach var="video" items="${videoList }">
+				<option value="${video.id }">${video.title }</option>
+			</c:forEach>
 		</select>
 	</div>
+	
+	<script type="text/javascript">
+	document.getElementById('video-title').addEventListener('change', (e)=>{
+		window.location.href ='?keyID='+e.target.value;
+	});
+	</script>
 	<style>
 .video-list {
 	display: flex;

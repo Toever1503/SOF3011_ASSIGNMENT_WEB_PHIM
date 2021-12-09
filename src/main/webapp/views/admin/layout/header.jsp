@@ -42,3 +42,37 @@ header {
 }
 </style>
 </header>
+
+<style>
+.body-content {
+	width: 100%;
+	min-height: 800px;
+	display: flex;
+}
+
+.body-content aside {
+	width: 15%;
+	background-color: white;
+	border-right: 1px solid black;
+}
+
+.body-content .main-content {
+	width: 85%;
+	background-color: skyblue;
+	padding: 10px;
+}
+
+aside .action-container {
+	
+}
+
+aside .action-item {
+	padding: 10px;
+	border-top: 1px solid black;
+	font-weight: bold;
+}
+
+aside .action-item:hover {
+	background-color: powderblue;
+}
+</style>

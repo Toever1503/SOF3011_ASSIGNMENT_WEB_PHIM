@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="change-password login">
-	<form action="" onsubmit='return formValidate(this)'>
+	<form action="" onsubmit='return formValidate(this)' method="post">
 		<h1 style="text-align: center;">Đổi Mật Khẩu</h1>
 		<div>
 			<label for="password">Mật Khẩu Hiện Tại:</label> <input
@@ -28,9 +29,10 @@
 			</div>
 		</div>
 
-		<p
-			style="text-align: center; background: antiquewhite; padding: 5px; display: block;">
-		</p>
+		<c:if test="${result != null }">
+			<p style="text-align: center; background: antiquewhite; padding: 5px; display: block;">
+				${message }</p>
+		</c:if>
 
 		<input type="submit" value="Lưu">
 	</form>
@@ -48,16 +50,18 @@
 
 			let check = 0;
 			if (password.value.length <= 0)
-				password.nextElementSibling.getElementsByTagName('span')[0].innerHTML = 'Mật khẩu cũ không được bỏ trống!';
+				password.nextElementSibling.getElementsByTagName('span')[0].innerHTML = 'Od password cannot empty!';
 			else if (newPassword.value.length <= 0)
-				newPassword.nextElementSibling.getElementsByTagName('span')[0].innerHTML = 'Mật khẩu mới không được bỏ trống!';
+				newPassword.nextElementSibling.getElementsByTagName('span')[0].innerHTML = 'New password cannot empty!';
+			else if (newPassword.value.length < 6)
+				newPassword.nextElementSibling.getElementsByTagName('span')[0].innerHTML = 'New password must have above 6 characters!';
 			else if (newPasswordConfirm.value.length <= 0)
 				newPasswordConfirm.nextElementSibling
-						.getElementsByTagName('span')[0].innerHTML = 'Mật khẩu mới không được bỏ trống!';
+						.getElementsByTagName('span')[0].innerHTML = 'Confirm password cannot empty!';
 			else {
 				if (newPassword.value !== newPasswordConfirm.value)
 					newPasswordConfirm.nextElementSibling
-							.getElementsByTagName('span')[0].innerHTML = ' Mật khẩu xác nhận không trùng với mật khẩu mới!';
+							.getElementsByTagName('span')[0].innerHTML = 'Confirm password not fit with new password';
 				else {
 					newPasswordConfirm.nextElementSibling
 							.getElementsByTagName('span')[0].innerHTML = '';

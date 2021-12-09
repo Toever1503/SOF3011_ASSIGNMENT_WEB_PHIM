@@ -8,12 +8,14 @@
 <jsp:include page="/views/layout/head.jsp"></jsp:include>
 </head>
 <body>
+	<jsp:include page="/views/layout/modal_input.jsp"></jsp:include>
 	<header>
 		<jsp:include page="/views/layout/header.jsp"></jsp:include>
 	</header>
 	
 	<div class="body-container">
-		<jsp:include page="/views/layout/header.jsp"></jsp:include>
+		<jsp:include page="/views/layout/breadcrumb.jsp"></jsp:include>
+		<jsp:include page="/views/layout/videoList.jsp"></jsp:include>
 	</div>
 	
 	<footer>

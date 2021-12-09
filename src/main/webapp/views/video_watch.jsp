@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="/views/layout/modal_input.jsp"></jsp:include>
 	<header>
 		<jsp:include page="/views/layout/header.jsp"></jsp:include>
 	</header>
