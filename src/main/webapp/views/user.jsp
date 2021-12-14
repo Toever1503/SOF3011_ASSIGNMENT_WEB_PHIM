@@ -7,7 +7,7 @@
 <head>
 <jsp:include page="/views/layout/head.jsp"></jsp:include>
 <style type="text/css">
-<%@include file='/resources/css/login.css' %>
+<%@include file='/static/css/login.css' %>
 </style>
 </head>
 <body>

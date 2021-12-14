@@ -6,6 +6,7 @@
 <html>
 <head>
 <jsp:include page="/views/layout/head.jsp"></jsp:include>
+<link rel=stylesheet type="text/css" href="${pageContext.request.contextPath}/css/z.css">
 </head>
 <body>
 	<div class="body-container">

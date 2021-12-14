@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <header>
 	<div class="header-content">
-		<a href="/admin">
+		<a href="http://localhost:8080/SOF3011_ASSIGNMENT/admin">
 			<div class="home-icon"></div>
-		</a> <a href="/">Đến trang xem phim</a>
+		</a> <a href="http://localhost:8080/SOF3011_ASSIGNMENT">Đến trang xem phim</a>
 	</div>
 	<style>
 * {

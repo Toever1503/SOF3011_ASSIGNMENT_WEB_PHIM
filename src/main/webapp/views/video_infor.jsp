@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="/views/layout/head.jsp"></jsp:include>
 <style type="text/css">
-<%@include file="/resources/css/video_infor.css" %>
+<%@include file="/static/css/video_infor.css" %>
 </style>
 </head>
 <body>

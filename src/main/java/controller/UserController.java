@@ -20,6 +20,13 @@ import model.User;
 
 @WebServlet(urlPatterns = { "/user", "/user/changepassword", "/user/edit_profile" }, loadOnStartup = 3)
 public class UserController extends HttpServlet {
+	private UserDao userDao;
+
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		userDao = new UserDao();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -100,7 +107,7 @@ public class UserController extends HttpServlet {
 			u.setDateCreate(user.getDateCreate());
 			u.setDateUpdate(new Timestamp(Calendar.getInstance().getTimeInMillis()));
 
-			if (UserDao.save(u) == null) {
+			if (userDao.save(u) == null) {
 				req.setAttribute("result", "error");
 				req.setAttribute("message", "Change failed! code: -1");
 			} else {
@@ -127,7 +134,7 @@ public class UserController extends HttpServlet {
 		}
 		System.out.println("update profile");
 		System.out.println(u);
-		User searchUser = UserDao.findByUser(user);
+		User searchUser = userDao.findByUser(user);
 		if (searchUser != null && searchUser.getId() != user.getId()) {// error
 			req.setAttribute("result", "error");
 			req.setAttribute("message", "Email has exist!");
@@ -142,7 +149,7 @@ public class UserController extends HttpServlet {
 			u.setDateCreate(user.getDateCreate());
 			u.setDateUpdate(new Timestamp(Calendar.getInstance().getTimeInMillis()));
 
-			if (UserDao.save(u) == null) {
+			if (userDao.save(u) == null) {
 				req.setAttribute("result", "error");
 				req.setAttribute("user", u);
 				req.setAttribute("message", "Update failed! code: -1");

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="SOF3011_ASSIGNMENT">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>model.User</class>
+		<class>model.Category</class>
+		<class>model.Staff</class>
+		<class>model.Studio</class>
+		<class>model.Tag</class>
+		<class>model.Video</class>
+		<class>model.Favorite</class>
+		<class>model.Share</class>
+		<class>model.Chars</class>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sof3011"/>
+			<property name="hibernate.connection.username" value="root"/>
+			<property name="hibernate.connection.password" value=""/>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.show_sql" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

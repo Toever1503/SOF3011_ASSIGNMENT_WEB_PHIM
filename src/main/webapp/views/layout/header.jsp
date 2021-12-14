@@ -74,6 +74,22 @@ footer {
 				</div>
 			</div>
 		</div>
+		 <div class="search">
+                    <form action="${pageContext.request.contextPath}/search">
+                        <input type="text" name="s" placeholder="Enter name video..">
+                    </form>
+        </div>
+        <style>
+			header .search{
+				display: grid;
+				align-content: space-around;
+			}
+			header .search input{
+				height: 22px;
+				border: 1px solid gainsboro;
+				border-radius: 4px;
+			}
+		</style>
 	</div>
 </div>
 

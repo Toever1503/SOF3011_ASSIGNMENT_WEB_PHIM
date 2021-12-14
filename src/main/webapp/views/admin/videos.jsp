@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -36,18 +36,29 @@
 				href="/SOF3011_ASSIGNMENT/admin/video/new">Thêm Mới</a></span>
 			<section>
 				<div class="filter-action">
-					<select name="" id="action">
+					<select id="action">
 						<option value="">Action</option>
 						<option value="">Delete</option>
-					</select> <select name="" id="status">
+					</select> 
+					
+					<select id="status">
 						<option value="">Status</option>
 						<option value="">Trash</option>
-					</select> <select name="" id="category">
-						<option value="">Category</option>
-						<option value="">Action</option>
-						<option value="">Shounen</option>
+					</select> 
+					
+					<select id="category">
+						<c:forEach var="cat" items="${catList }">
+							<option value="${cat.id }">${cat.name }</option>
+						</c:forEach>
+						
+						<script type="text/javascript">
+						document.getElementById('category').addEventListener('change', (e)=>{
+						    console.log(e.target.value)
+						})
+						</script>
 					</select>
 				</div>
+				${requestScope['javax.servlet.forward.query_string'].replaceAll('/\bcatagory\b=[\w\s]+/', '') }
 			</section>
 			<!-- end filter -->
 			<div class="section">
@@ -78,8 +89,16 @@
 										<span><a href="${pageContext.request.contextPath }/film/${video.title}/${video.id}">Xem</a></span>
 									</div>
 								</td>
-								<td>1131</td>
-								<td>51515</td>
+								<td>
+									<c:forEach var="v_cat" items="${video.categores }">
+										${v_cat.name }
+									</c:forEach>
+								</td>
+								<td>
+									<c:forEach var="v_tag" items="${video.tags }">
+										${v_tag.name }, 
+									</c:forEach>
+								</td>
 								<td>Shiki</td>
 								<td><span>${video.dateCreate !=null ?video.dateCreate.toGMTString(): 'asa' }</span></td>
 							</tr>
