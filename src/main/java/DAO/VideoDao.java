@@ -18,14 +18,23 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaDelete;
 
+import org.hibernate.Session;
+import org.hibernate.SessionBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.internal.SessionFactoryImpl.SessionBuilderImpl;
+import org.hibernate.internal.SessionImpl;
 
 import model.Category;
+import model.Chars;
 import model.Staff;
+import model.Studio;
+import model.Tag;
 import model.Video;
 import utils.JpaUtils;
 
@@ -62,8 +71,35 @@ public class VideoDao {
 					staffs.add(staff); // add new staff
 			});
 
+			Set<Studio> studios = new HashSet<Studio>();
+			obj.getStudios().forEach(studio -> {
+				if (studio.getId() != null)
+					studios.add(enManager.getReference(Studio.class, studio.getId())); // add exist staff
+				else
+					studios.add(studio); // add new studio
+			});
+
+			Set<Chars> chars = new HashSet<Chars>();
+			obj.getChars().forEach(chars1 -> {
+				if (chars1.getId() != null)
+					chars.add(enManager.getReference(Chars.class, chars1.getId())); // add exist staff
+				else
+					chars.add(chars1); // add new char
+			});
+
+			Set<Tag> tags = new HashSet<Tag>();
+			obj.getTags().forEach(tag -> {
+				if (tag.getId() != null)
+					tags.add(enManager.getReference(Tag.class, tag.getId())); // add exist staff
+				else
+					tags.add(tag); // add new tag
+			});
+
 			obj.setCategores(cats); // set cat again
 			obj.setStaffs(staffs); // set staff again
+			obj.setStudios(studios);
+			obj.setChars(chars);
+			obj.setTags(tags);
 
 			obj = enManager.merge(obj);
 			enManager.getTransaction().commit();
@@ -129,19 +165,9 @@ public class VideoDao {
 	}
 
 	public static void main(String[] args) {
-		List<List<Integer>> arr = new ArrayList<List<Integer>>();
-		Integer[] e = new Integer[] { 11, 2, 4 };
-		Integer[] e1 = new Integer[] { 4, 5, 6 };
-		Integer[] e2 = new Integer[] { 10, 8, -12 };
+		EntityManager en = JpaUtils.getManager();
+		en.createNativeQuery(null);
+		
 
-		arr.add(Arrays.asList(e));
-		arr.add(Arrays.asList(e1));
-		arr.add(Arrays.asList(e2));
-
-//		VideoDao videoDao = new VideoDao();
-//		Video v = videoDao.findByID(1l);
-//		
-//		System.out.println(v.getChars().size());
-//		System.out.println(v.getTags().size());
 	}
 }
